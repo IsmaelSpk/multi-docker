@@ -21,3 +21,17 @@ after_success:
   - docker push isma/multi-nginx
   - docker push isma/multi-server
   - docker push isma/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-900408709414
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id:
+    secure: $AWS_ACCESS_KEY
+  secret_acess_key: 
+    secure: $AWS_SECRET_KEY
